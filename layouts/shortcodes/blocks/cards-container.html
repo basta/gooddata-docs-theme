@@ -1,4 +1,10 @@
 {{/* (C) 2023 GoodData Corporation */}}
 {{ $maxRow := .Get "maxRow" }}
+{{ $aligned := .Get "aligned" }}
+{{ if eq $aligned "true"}}
+{{ $aligned = true }}
+{{ else }}
+{{ $aligned = false }}
+{{ end }}
 
-<div class="row{{ if and (gt (int $maxRow) 0) (lt (int $maxRow) 13) }} row-cols-1 row-cols-md-{{ int $maxRow }}{{ end }} mt-4">{{ .Inner }}</div>
+<div class="row{{ if and (gt (int $maxRow) 0) (lt (int $maxRow) 13) }} row-cols-1 row-cols-md-{{ int $maxRow }}{{ end }} mt-4 cards-container {{if $aligned}} cards-container--aligned {{ end }}">{{ .Inner }}</div>
