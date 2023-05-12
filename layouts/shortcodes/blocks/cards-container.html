@@ -1,10 +1,10 @@
 {{/* (C) 2023 GoodData Corporation */}}
-{{ $maxRow := .Get "maxRow" }}
-{{ $aligned := .Get "aligned" }}
-{{ if eq $aligned "true"}}
-{{ $aligned = true }}
-{{ else }}
-{{ $aligned = false }}
+{{ $maxRow := 0 }}
+{{/* If maxRow doesn't exist set it to 0 else set it to the argument value */}}
+{{ if and (.Get "maxRow") (gt (len (.Get "maxRow")) 0) }}
+    {{ $maxRow = .Get "maxRow" }}
 {{ end }}
+
+{{ $aligned := eq (.Get "aligned") "true" }}
 
 <div class="row{{ if and (gt (int $maxRow) 0) (lt (int $maxRow) 13) }} row-cols-1 row-cols-md-{{ int $maxRow }}{{ end }} mt-4 cards-container {{if $aligned}} cards-container--aligned {{ end }}">{{ .Inner }}</div>
