@@ -9,4 +9,6 @@
 
 {{ $aligned := eq (.Get "aligned") "true" }}
 
+{{ warnf "DEBUG: alligned is: %v" $aligned }}
+
 <div class="row{{ if and (gt (int $maxRow) 0) (lt (int $maxRow) 13) }} row-cols-1 row-cols-md-{{ int $maxRow }}{{ end }} mt-4 cards-container {{if $aligned}} cards-container--aligned {{ end }}">{{ .Inner }}</div>
